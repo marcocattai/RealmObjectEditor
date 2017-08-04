@@ -12,7 +12,7 @@ import Cocoa
 class ColorableView: NSView {
 
     @IBInspectable
-    var backgroundColor: NSColor = NSColor.whiteColor(){
+    var backgroundColor: NSColor = NSColor.white{
     didSet{
         needsDisplay = true
     }
@@ -26,7 +26,7 @@ class ColorableView: NSView {
     }
     
     @IBInspectable
-    var topSeperatorColor: NSColor = NSColor.whiteColor(){
+    var topSeperatorColor: NSColor = NSColor.white{
         didSet{
             needsDisplay = true
         }
@@ -40,7 +40,7 @@ class ColorableView: NSView {
     }
     
     @IBInspectable
-    var leftSeperatorColor: NSColor = NSColor.whiteColor(){
+    var leftSeperatorColor: NSColor = NSColor.white{
         didSet{
             needsDisplay = true
         }
@@ -54,7 +54,7 @@ class ColorableView: NSView {
     }
     
     @IBInspectable
-    var bottomSeperatorColor: NSColor = NSColor.whiteColor(){
+    var bottomSeperatorColor: NSColor = NSColor.white{
         didSet{
             needsDisplay = true
         }
@@ -68,7 +68,7 @@ class ColorableView: NSView {
     }
     
     @IBInspectable
-    var rightSeperatorColor: NSColor = NSColor.whiteColor(){
+    var rightSeperatorColor: NSColor = NSColor.white{
         didSet{
             needsDisplay = true
         }
@@ -91,15 +91,15 @@ class ColorableView: NSView {
     }
     
     @IBInspectable
-    var borderColor : NSColor = NSColor.clearColor(){
+    var borderColor : NSColor = NSColor.clear{
         didSet{
             wantsLayer = true
             needsDisplay = true
         }
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         backgroundColor.setFill()
         NSRectFill(self.bounds)
         if topSeperatorWidth > 0{
@@ -117,35 +117,35 @@ class ColorableView: NSView {
         if rightSeperatorWidth > 0{
             drawRightSep(dirtyRect)
         }
-        layer?.edgeAntialiasingMask = [.LayerBottomEdge, .LayerTopEdge, .LayerLeftEdge, .LayerRightEdge]
-        layer?.borderColor = borderColor.CGColor
+        layer?.edgeAntialiasingMask = [.layerBottomEdge, .layerTopEdge, .layerLeftEdge, .layerRightEdge]
+        layer?.borderColor = borderColor.cgColor
         layer?.cornerRadius = cornerRadius
         layer?.borderWidth = borderWidth
     }
     
     
-    func drawTopSep(rect: NSRect)
+    func drawTopSep(_ rect: NSRect)
     {
         topSeperatorColor.setFill()
         let y = rect.origin.y + rect.size.height - topSeperatorWidth
         NSRectFill(NSMakeRect(rect.origin.x, y, rect.size.width, topSeperatorWidth))
     }
     
-    func drawLeftSep(rect: NSRect)
+    func drawLeftSep(_ rect: NSRect)
     {
         leftSeperatorColor.setFill()
        
         NSRectFill(NSMakeRect(rect.origin.x, rect.origin.y, leftSeperatorWidth, rect.size.height))
     }
     
-    func drawBottomSep(rect: NSRect)
+    func drawBottomSep(_ rect: NSRect)
     {
         bottomSeperatorColor.setFill()
         
         NSRectFill(NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width, bottomSeperatorWidth))
     }
     
-    func drawRightSep(rect: NSRect)
+    func drawRightSep(_ rect: NSRect)
     {
         rightSeperatorColor.setFill()
         let x = rect.origin.x + rect.size.width - rightSeperatorWidth

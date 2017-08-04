@@ -44,14 +44,14 @@ class ImplementationFileContentGenerator: FileContentGenerator {
                 continue
             }
             
-            var defValueDefination = lang.implementation.forEachPropertyWithDefaultValue
+            var defValueDefination: String = lang.implementation.forEachPropertyWithDefaultValue
             defValueDefination.replace(AttrName, by: attr.name)
             defValueDefination.replace(AttrDefaultValue, by: defValue)
             defValues += defValueDefination
         }
         
         if defValues.characters.count > 0{
-            var defValuesDef = lang.implementation.defaultValuesDefination
+            var defValuesDef: String = lang.implementation.defaultValuesDefination
             defValuesDef.replace(DefaultValues, by: defValues)
             content += defValuesDef
         }
